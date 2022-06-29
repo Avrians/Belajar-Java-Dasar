@@ -45,6 +45,7 @@ public class Main {
                     System.out.println("TAMBAH DATA BUKU");
                     System.out.println("================");
                     tambahData();
+                    tampilkanData();
                     break;
                 case "4":
                     System.out.println("\n==============");
@@ -56,7 +57,7 @@ public class Main {
                     System.out.println("\n===============");
                     System.out.println("HAPUS DATA BUKU");
                     System.out.println("===============");
-                    // hapus data
+                    
                     break;
                 default:
                     System.err.println("\nInput anda tidak ditemukan\nSilahkan pilih [1-5]");
@@ -77,6 +78,7 @@ public class Main {
         } catch (Exception e ) {
             System.err.println("\nDatabase tidak ditemukan");
             System.err.println("Silahkan tambah data terlebih dahulu");
+            tambahData();
             return;
         }
 
@@ -112,6 +114,7 @@ public class Main {
         } catch (Exception e ) {
             System.err.println("\nDatabase tidak ditemukan");
             System.err.println("Silahkan tambah data terlebih dahulu");
+            tambahData();
             return;
         }
 
