@@ -57,13 +57,59 @@ public class Main {
                     System.out.println("\n===============");
                     System.out.println("HAPUS DATA BUKU");
                     System.out.println("===============");
-                    
+                    deleteData();
                     break;
                 default:
                     System.err.println("\nInput anda tidak ditemukan\nSilahkan pilih [1-5]");
             }
 
             isLanjutkan = getYesorNo("Apakah Anda ingin melanjutkan ");
+        }
+    }
+
+    private static void deleteData() throws IOException {
+        // kita ambil database original
+        File database = new File("database.txt");
+        FileReader fileInput = new FileReader(database);
+        BufferedReader bufferedInput = new BufferedReader(fileInput);
+
+        // kita buat database sementara
+        File tempDB = new File("tempDB.txt");
+        FileWriter fileOutput = new FileWriter(tempDB);
+        BufferedWriter bufferedOutput = new BufferedWriter(fileOutput);
+
+        // tampilkan data
+        System.out.println("List Buku");
+        tampilkanData();
+
+        // kita ambil user input untuk mendelete data
+        Scanner terminalInput = new Scanner(System.in);
+        System.out.print("\nMasukan nomor buku yang akan dihapus: ");
+        int deleteNum = terminalInput.nextInt();
+
+
+        // looping untuk membaca tiap data baris dan skip data yang akan di delete
+        int entryCounts = 0;
+
+        String data = bufferedInput.readLine();
+
+        while (data != null) {
+            entryCounts++;
+            boolean isDelete = false;
+
+            StringTokenizer st = new StringTokenizer(data, ",");
+            // tampilkan data yang ingin dihapus
+            if (deleteNum == entryCounts) {
+                System.out.println("\nData yang ingin anda hapus adalah: ");
+                System.out.println("==========================================");
+                System.out.println("Referensi      : "+ st.nextToken());
+                System.out.println("Tahun          : "+ st.nextToken());
+                System.out.println("Penulis        : "+ st.nextToken());
+                System.out.println("Penerbit       : "+ st.nextToken());
+                System.out.println("Judul          : "+ st.nextToken());
+                isDelete = getYesorNo("Apakah anda yakin akan menghapus? ");
+            }
+            data = bufferedInput.readLine();
         }
     }
 

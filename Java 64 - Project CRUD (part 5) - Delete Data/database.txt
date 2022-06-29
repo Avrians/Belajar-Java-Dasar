@@ -7,3 +7,4 @@ faqihza_2019_3,2019,faqihza,gramedia,belajar Java
 faqihza_2019_4,2019,faqihza,gramedia,belajar Dart
 avriansyah_2022_1,2022,avriansyah,mediakita,cara mencintaimu
 faqihza_2019_5,2019,faqihza,pramedia,belajar membaca
+aku_2020_1,2020,aku,akj,akj
