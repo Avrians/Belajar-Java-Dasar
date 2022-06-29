@@ -3,7 +3,6 @@ package com.tutorial;
 import java.io.*;
 import java.time.Year;
 import java.util.Arrays;
-import java.util.Locale;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -89,6 +88,7 @@ public class Main {
 
 
         // looping untuk membaca tiap data baris dan skip data yang akan di delete
+        boolean isFound = false;
         int entryCounts = 0;
 
         String data = bufferedInput.readLine();
@@ -108,9 +108,31 @@ public class Main {
                 System.out.println("Penerbit       : "+ st.nextToken());
                 System.out.println("Judul          : "+ st.nextToken());
                 isDelete = getYesorNo("Apakah anda yakin akan menghapus? ");
+                isFound = true;
+            }
+
+            if (isDelete) {
+                // skip pindahkan data dari original ke sementara
+                System.out.println("Data berhasil dihapus");
+            } else {
+                // kita pindahkan data dari original ke sementara
+                bufferedOutput.write(data);
+                bufferedOutput.newLine();
+
             }
             data = bufferedInput.readLine();
         }
+
+        if (!isFound) {
+            System.err.println("Buku tidak ditemukan");
+        }
+
+        // menulis data ke file
+        bufferedOutput.flush();
+        // delete original file
+        database.delete();
+        // renama file sementara ke database
+        tempDB.renameTo(database);
     }
 
     private static void tampilkanData() throws IOException {
