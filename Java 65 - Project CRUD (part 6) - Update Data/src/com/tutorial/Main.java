@@ -50,7 +50,7 @@ public class Main {
                     System.out.println("\n==============");
                     System.out.println("UBAH DATA BUKU");
                     System.out.println("==============");
-                    // ubah data
+                    updateData();
                     break;
                 case "5":
                     System.out.println("\n===============");
@@ -64,6 +64,39 @@ public class Main {
 
             isLanjutkan = getYesorNo("Apakah Anda ingin melanjutkan ");
         }
+    }
+
+    private static void updateData() throws IOException {
+        // kita ambil database original
+        File database = new File("database.txt");
+        FileReader fileInput = new FileReader(database);
+        BufferedReader bufferedInput  = new BufferedReader(fileInput);
+
+        // kita buat database sementara
+        File tempDB = new File("tempDB.txt");
+        FileWriter fileOutput = new FileWriter(tempDB);
+        BufferedWriter bufferedOutput = new BufferedWriter(fileOutput);
+
+        // tampilkan data
+        System.out.println("List Buku");
+        tampilkanData();
+
+        // ambil user input / pilihan data
+        Scanner terminalInput = new Scanner(System.in);
+        System.out.print("\nMasukan nomor buku yang akan diupdate: ");
+        int updateNum = terminalInput.nextInt();
+
+        // tampilkan data yang ingin di update
+
+        String data = bufferedInput.readLine();
+        int entryCounts = 0;
+
+        while(data != null) {
+            entryCounts++;
+
+        }
+
+
     }
 
     private static void deleteData() throws IOException {
